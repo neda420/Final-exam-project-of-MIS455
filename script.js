@@ -1,7 +1,6 @@
-// API Base URL
+
 var API_BASE_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
-// Event listener for search button
 document.getElementById("searchBtn").addEventListener("click", function () {
     var searchTerm = document.getElementById("searchInput").value.trim();
     if (searchTerm) {
@@ -11,7 +10,6 @@ document.getElementById("searchBtn").addEventListener("click", function () {
     }
 });
 
-// Fetch meals from the API
 function fetchMeals(query) {
     fetch(API_BASE_URL + query)
         .then(function (response) {
@@ -20,14 +18,12 @@ function fetchMeals(query) {
         .then(function (data) {
             if (data.meals) {
                 var totalMeals = data.meals.length;
-                var mealsToShow = data.meals.slice(0, Math.min(totalMeals, 5)); // Show up to 5 meals
+                var mealsToShow = data.meals.slice(0, Math.min(totalMeals, 5)); 
 
                 displayMeals(mealsToShow);
 
-                // Update result count
                 document.getElementById("resultCount").innerText = `Showing ${mealsToShow.length} out of ${totalMeals} meals`;
 
-                // Handle "Show All" button
                 if (totalMeals > 5) {
                     var showAllBtn = document.getElementById("showAllBtn");
                     showAllBtn.classList.remove("d-none");
@@ -47,8 +43,6 @@ function fetchMeals(query) {
             alert("Failed to fetch meals. Please try again later.");
         });
 }
-
-// Display meals on the page
 function displayMeals(meals, append = false) {
     var mealsContainer = document.getElementById("mealsContainer");
     if (!append) mealsContainer.innerHTML = "";
@@ -70,8 +64,6 @@ function displayMeals(meals, append = false) {
         mealsContainer.appendChild(mealCard);
     });
 }
-
-// Clear results
 function clearResults() {
     document.getElementById("mealsContainer").innerHTML = "";
     document.getElementById("showAllBtn").classList.add("d-none");
