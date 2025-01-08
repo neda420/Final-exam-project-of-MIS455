@@ -18,7 +18,7 @@ function fetchMeals(query) {
         .then(function (data) {
             if (data.meals) {
                 var totalMeals = data.meals.length;
-                var mealsToShow = data.meals.slice(0, Math.min(totalMeals, 5)); 
+                var mealsToShow = data.meals.slice(0, Math.min(totalMeals, 4)); 
 
                 displayMeals(mealsToShow);
 
